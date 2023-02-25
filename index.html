@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stopwatch</title>
+    <link rel="stylesheet" href="./bootstrap-5.2.2-dist/bootstrap-5.2.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <div class=" bg-info col-md-5 mt-4 rounded rounded-4 fw-bold ms-sm-3 ms-auto" style="height: 340px;">
+      <h1 align="center" class="mt-5 fw-bold" style="font-style: italic;">Stopwatch</h1>
+      <marquee behavior="" direction="right" class="fw-bold"> Welcome to Vicky StopWatch</marquee>
+      <p class="time me-5 ms-5 ps-5 p-5" style="margin-left: 52px;">
+                <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="tens">00</span>
+            </p>
+       <div class="buttton mt-5" style="margin-top: 25px;">
+        <button class="btn btn-primary  me-2" id="start" style="margin-left: 25px;">Start</button>
+        <button class="btn btn-success me-2" id="stop">Pause</button>
+        <button class="btn btn-danger me-2" id="reset">Reset</button>
+       </div>
+    </div>
+  <script>
+    window.onload =function (){
+        let minutes = 0;
+        let seconds = 0;
+        let tens = 00;
+        let appendMinutes = document.querySelector('minutes');
+        let appendTens = document.querySelector('#tens');
+        let appendSeconds = document.querySelector('#seconds');
+        let startBtn = document.querySelector('#start');
+        let stopBtn = document.querySelector('#stop');
+        let resetBtn = document.querySelector('#reset');
+        let Interval;
+
+
+        const startTimer = () =>{
+            tens++
+            if (tens <= 9 ) {
+                appendTens.innerHtml = '0' + tens
+            }
+            if (tens > 9 ) {
+                appendTens.innerHTML = tens
+            }
+            if( tens > 99){
+                seconds++;
+                appendSeconds.innerHTML = '0' + seconds;
+                tens = 0; 
+                appendTens.innerHTML = '0' + 0;
+            }
+            if (seconds > 9) {
+                appendSeconds.innerHTML = seconds;
+            }
+            if (seconds > 59) {
+                minutes+=
+                appendMinutes.innerHTML ='0' + minutes;
+                seconds = 0;
+                appendSeconds.innerHTML = '0' + 0;
+            }
+        };
+        startBtn.onclick = () => {
+            clearInterval(Interval);
+            Interval = setInterval(startTimer, 10);
+        };
+        stopBtn.onclick = () => {
+            clearInterval(Interval)
+        }
+        resetBtn.onclick = () => {
+            clearInterval(Interval)
+            tens = '00'
+            seconds = '00'
+            minutes = '00'
+            appendTens.innerHTML = tens
+            appendSeconds.innerHTML = seconds
+            appendMinutes.innerHtml = minutes
+
+        }
+    };
+  </script>
+</body>
+</html>
